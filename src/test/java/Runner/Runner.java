@@ -17,8 +17,4 @@ import org.junit.runner.RunWith;
         tags = "@SmokeTest"
 )
 public class Runner {
-    @AfterClass
-    public static void afterAll() {
-       BasePage.closeDriver();
-    }
 }

@@ -10,9 +10,7 @@ import org.testng.annotations.AfterTest;
 
 public class Hooks extends BasePage {
 
-    public Hooks() {
-        super(driver);
-    }
+    public Hooks() { }
 
     @AfterStep
     public void addScreenshot(Scenario scenario){

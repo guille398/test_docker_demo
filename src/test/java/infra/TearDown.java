@@ -23,10 +23,8 @@ public class TearDown {
     }
 
     private void saveScreenshotsForScenario(final Scenario scenario) {
-
-        final byte[] screenshot = ((TakesScreenshot) driver)
-                .getScreenshotAs(OutputType.BYTES);
-        scenario.embed(screenshot, "image/png");
+        final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenshot, "image/png", "image");
     }
 }
 
