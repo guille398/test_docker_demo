@@ -15,8 +15,8 @@ public class BasePage {
 
        static{
         ChromeOptions chromeOptions = new ChromeOptions();
-//        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/chromedriver_win32/chromedriver.exe");
             WebDriverManager.chromedriver().setup();
+            chromeOptions.addArguments("--headless");
             driver = new ChromeDriver(chromeOptions);
         }
 
