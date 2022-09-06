@@ -7,10 +7,10 @@
     <groupId>org.example</groupId>
     <artifactId>test-project-java-cucumber</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <maven.test.failure.ignore>true</maven.test.failure.ignore>
     </properties>
 
     <dependencies>
