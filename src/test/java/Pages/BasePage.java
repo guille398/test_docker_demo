@@ -1,30 +1,25 @@
 package Pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
+import infra.Setup;
+import infra.Wait;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.concurrent.TimeUnit;
 
 
 public class BasePage {
-    public static WebDriver driver;
-    public static WebDriver wait;
 
-       static{
-        ChromeOptions chromeOptions = new ChromeOptions();
-            WebDriverManager.chromedriver().setup();
-            chromeOptions.addArguments("--headless");
-            driver = new ChromeDriver(chromeOptions);
-        }
+    protected RemoteWebDriver driver;
+    protected Wait wait;
 
-    public BasePage(WebDriver driver){
-        BasePage.driver = driver;
-    }
-    public static void navigateTo(String url){
-            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+   public BasePage(){
+       this.driver = Setup.driver;
+       this.wait = new Wait(this.driver);
+   }
+
+    public void navigateTo(String url){
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.get(url);
     }
 
@@ -36,11 +31,7 @@ public class BasePage {
     }
     //Clicks button, receives the object webElement
     public static void clickButton(WebElement button){
-            button.click();
+        button.click();
     }
-    public static void closeDriver(){
-        driver.close();
-    }
-
 
 }

@@ -2,6 +2,7 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,7 +12,7 @@ import org.testng.Assert;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class SearchPage extends BasePage{
+public class SearchPage extends BasePage {
 
     static String inputBoxLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content section.query-params-form form:nth-child(2) div.form-row.row > input:nth-child(2)";
     static String searchButtonLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content section.query-params-form form:nth-child(2) > button.button";
@@ -30,20 +31,20 @@ public class SearchPage extends BasePage{
     static String actualValueMsgLocator = "div:nth-child(2) div.restool-app div.app-page:nth-child(2) main.app-page-content > div.app-error";
 
     public SearchPage() {
-        super(driver);
+        PageFactory.initElements(driver,this);
     }
-    public static void navigateToSearchPage(String url){
+    public void navigateToSearchPage(String url){
         navigateTo(url);
     }
 
 
-    public static void TypeInSearchBox(String character) {
+    public void TypeInSearchBox(String character) {
         WebElement inputBox = searchWaitUntil(inputBoxLocator);
         inputCharacters(inputBox, "");
         inputCharacters(inputBox, character);
     }
 
-    public static void ClickButton(String buttonId) {
+    public void ClickButton(String buttonId) {
         WebElement button = null;
 
         switch(buttonId){
@@ -64,7 +65,7 @@ public class SearchPage extends BasePage{
         clickButton(button);
     }
 
-    public static void addItemsValues(  String THUMBNAIL,
+    public void addItemsValues(  String THUMBNAIL,
                                         String NAME,
                                         String REALNAME,
                                         String LOCATION,
@@ -80,13 +81,13 @@ public class SearchPage extends BasePage{
         BasePage.inputCharacters(nameTextBox, NAME);
         BasePage.inputCharacters(realNameTextBox, REALNAME);
         locationTextBox.selectByValue(LOCATION);
-        if(ALIVE == "YES"){
+        if(ALIVE.equals("YES")){
             aliveTextBox.click();
         }
 
     }
 
-    public static void alertAccept(){
+    public void alertAccept(){
         driver.switchTo().alert().accept();
     }
 
@@ -95,7 +96,7 @@ public class SearchPage extends BasePage{
     static String ActualValueRealNameLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content div.infinite-scroll-component__outerdiv div.infinite-scroll-component.cards-wrapper div.card:nth-child(1) div.card-row.text:nth-child(4) > span:nth-child(2)";
     static String ActualValueCurrentLocationLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content div.infinite-scroll-component__outerdiv div.infinite-scroll-component.cards-wrapper div.card:nth-child(1) div.card-row.text:nth-child(5) > span:nth-child(2)";
 
-    public static void CheckCardValues(String ExpectedValueName,
+    public void CheckCardValues(String ExpectedValueName,
                                        String ExpectedValueRealName,
                                        String ExpectedValueCurrentLocation) {
 
@@ -117,7 +118,7 @@ public class SearchPage extends BasePage{
 
     }
 
-    public static void checkMsg(String ExpectedMsg){
+    public void checkMsg(String ExpectedMsg){
         WebElement actualValueMsg = searchWaitUntil(actualValueMsgLocator);
         ArrayList<String> exceptionCapture = new ArrayList<>();
         try
@@ -132,7 +133,7 @@ public class SearchPage extends BasePage{
     }
 
     //Search webelements by cssLocator, returns an object
-    public static WebElement searchWaitUntil(String locator) {
+    public WebElement searchWaitUntil(String locator) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator)));
         return webElement;

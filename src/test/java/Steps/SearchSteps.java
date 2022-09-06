@@ -6,21 +6,22 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SearchSteps {
+
     SearchPage google = new SearchPage();
     @Given("a Chrome browser navigates to Search page {}")
     public void navigate(String url){
-        SearchPage.navigateToSearchPage(url);
+        google.navigateToSearchPage(url);
     }
     @When("I type on search box the value {}")
     public void enterValue(String character){
-        SearchPage.TypeInSearchBox(character);
+        google.TypeInSearchBox(character);
     }
 
     @When("I click on {}")
     public void clickButton(String buttonId){
-        SearchPage.ClickButton(buttonId);
+        google.ClickButton(buttonId);
         if (buttonId.equals("Delete button")) {
-            SearchPage.alertAccept();
+            google.alertAccept();
         }
     }
 
@@ -32,8 +33,8 @@ public class SearchSteps {
     public void CheckCard(String ExpectedValueName,
                           String ExpectedValueRealName,
                           String ExpectedValueCurrentLocation) {
-        
-        SearchPage.CheckCardValues(ExpectedValueName,ExpectedValueRealName,ExpectedValueCurrentLocation);
+
+        google.CheckCardValues(ExpectedValueName,ExpectedValueRealName,ExpectedValueCurrentLocation);
     }
 
 
@@ -45,13 +46,13 @@ public class SearchSteps {
             String LOCATION,
             String ALIVE
             ) {
-        SearchPage.addItemsValues(THUMBNAIL, NAME, REALNAME, LOCATION, ALIVE);
+        google.addItemsValues(THUMBNAIL, NAME, REALNAME, LOCATION, ALIVE);
     }
 
     @Then("I check than {} don't exist anymore")
     public void CheckDelete(String value){
       enterValue(value);
       clickButton("Search Submit");
-      SearchPage.checkMsg("Nothing to see here. Result is empty");
+      google.checkMsg("Nothing to see here. Result is empty");
     }
 }
