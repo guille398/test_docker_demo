@@ -1,0 +1,75 @@
+version: "3"
+services:
+  chrome:
+    image: selenium/node-chrome:4.0.0-rc-2-prerelease-20210908
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    ports:
+      - "6900:5900"
+
+  # edge:
+  #   image: selenium/node-edge:4.0.0-rc-2-prerelease-20210908
+  #   shm_size: 2gb
+  #   depends_on:
+  #     - selenium-hub
+  #   environment:
+  #     - SE_EVENT_BUS_HOST=selenium-hub
+  #     - SE_EVENT_BUS_PUBLISH_PORT=4442
+  #     - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+  #   ports:
+  #     - "6901:5900"
+
+  # firefox:
+  #   image: selenium/node-firefox:4.0.0-rc-2-prerelease-20210908
+  #   shm_size: 2gb
+  #   depends_on:
+  #     - selenium-hub
+  #   environment:
+  #     - SE_EVENT_BUS_HOST=selenium-hub
+  #     - SE_EVENT_BUS_PUBLISH_PORT=4442
+  #     - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  #   ports:
+  #     - "6902:5900"
+
+  selenium-hub:
+    image: selenium/hub:4.0.0-rc-2-prerelease-20210908
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+
+  allure:
+    image: "frankescobar/allure-docker-service"
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 1
+      KEEP_HISTORY: 1
+    ports:
+      - "5050:5050"
+    volumes:
+      - ${PWD}/allure-results:${HOME}/app/allure-results
+      - ${PWD}/allure-reports:${HOME}/app/default-reports
+
+  allure-ui:
+    image: "frankescobar/allure-docker-service-ui"
+    environment:
+      ALLURE_DOCKER_PUBLIC_API_URL: "http://localhost:5050"
+      ALLURE_DOCKER_PUBLIC_API_URL_PREFIX: ""
+    ports:
+      - "5252:5252"
+
+
+  automation_sample:
+    #image: "alexismoreno/automation_sample"
+    build: .
+    command: bash -c "mvn test -Dhub='http://selenium-hub:4444/wd/hub' -Dbrowser=chrome"
+    volumes:
+      - ${PWD}/allure-reports:/target/surefire-reports
+    depends_on:
+      - chrome

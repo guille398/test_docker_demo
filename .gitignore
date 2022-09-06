@@ -1,0 +1,76 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+.idea/workspace.xml
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+target\
+# file: ~/.gitignore_global
+.DS_Store
+.idea.idea\
+test-output\
+test-output\
+/Screenshots/embedded1.png
+/test-output/embedded1.png
+/Screenshots/embedded2.png
+/test-output/embedded2.png
+/Screenshots/embedded3.png
+/test-output/embedded3.png
+/Screenshots/embedded4.png
+/test-output/embedded4.png
+/Screenshots/embedded5.png
+/test-output/embedded5.png
+/Screenshots/embedded6.png
+/test-output/embedded6.png
+/Screenshots/embedded7.png
+/test-output/embedded7.png
+/Screenshots/embedded8.png
+/test-output/embedded8.png
+/Screenshots/embedded9.png
+/test-output/embedded9.png
+/Screenshots/embedded10.png
+/test-output/embedded10.png
+/Screenshots/embedded11.png
+/test-output/embedded11.png
+/test-output/embedded12.png
+/test-output/embedded13.png
+/test-output/embedded14.png
+/test-output/embedded15.png
+/test-output/embedded16.png
+/test-output/json/extent.json
+/test-output/SparkReport/ExtentSpark.html
+/test-output/html/Index.html
