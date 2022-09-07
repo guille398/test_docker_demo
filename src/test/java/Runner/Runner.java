@@ -1,10 +1,11 @@
 package Runner;
 
-import Pages.BasePage;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-import org.junit.AfterClass;
 import org.junit.runner.RunWith;
+import org.testng.annotations.Test;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+
 
 
 @RunWith(Cucumber.class)
@@ -16,5 +17,6 @@ import org.junit.runner.RunWith;
         dryRun = false,
         tags = "@SmokeTest"
 )
-public class Runner {
+@Test
+public class Runner extends AbstractTestNGCucumberTests {
 }

@@ -1,4 +1,4 @@
-package Steps;
+package hooks;
 
 import infra.DriverManager;
 import io.cucumber.java.After;
@@ -14,11 +14,11 @@ import utility.PropertyFileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-public class Hooks {
+public class Hook {
 
     private static WebDriver driver;
 
-    public Hooks(){
+    public Hook(){
     }
 
     @Before

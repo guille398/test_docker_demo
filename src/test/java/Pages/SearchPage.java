@@ -2,17 +2,17 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import utility.MasterPage;
 
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class SearchPage extends BasePage {
+public class SearchPage extends MasterPage {
 
     static String inputBoxLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content section.query-params-form form:nth-child(2) div.form-row.row > input:nth-child(2)";
     static String searchButtonLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content section.query-params-form form:nth-child(2) > button.button";
@@ -30,8 +30,21 @@ public class SearchPage extends BasePage {
 
     static String actualValueMsgLocator = "div:nth-child(2) div.restool-app div.app-page:nth-child(2) main.app-page-content > div.app-error";
 
-    public SearchPage() {
-        PageFactory.initElements(driver,this);
+
+
+    public void navigateTo(String url){
+        auto_openURLInBrowser(url);
+    }
+
+    //Inputs a value in the received object
+    public static void inputCharacters(WebElement inputBox, String characters){
+        inputBox.click();
+        inputBox.clear();
+        inputBox.sendKeys(characters);
+    }
+    //Clicks button, receives the object webElement
+    public static void clickButton(WebElement button){
+        button.click();
     }
     public void navigateToSearchPage(String url){
         navigateTo(url);
@@ -77,9 +90,9 @@ public class SearchPage extends BasePage {
         Select locationTextBox = new Select(locationWebObject);
         WebElement aliveTextBox = searchWaitUntil(aliveTextBoxLocator);
 
-        BasePage.inputCharacters(thumbnailTextBox, THUMBNAIL);
-        BasePage.inputCharacters(nameTextBox, NAME);
-        BasePage.inputCharacters(realNameTextBox, REALNAME);
+        inputCharacters(thumbnailTextBox, THUMBNAIL);
+        inputCharacters(nameTextBox, NAME);
+        inputCharacters(realNameTextBox, REALNAME);
         locationTextBox.selectByValue(LOCATION);
         if(ALIVE.equals("YES")){
             aliveTextBox.click();
@@ -88,7 +101,7 @@ public class SearchPage extends BasePage {
     }
 
     public void alertAccept(){
-        driver.switchTo().alert().accept();
+
     }
 
     //Asserts ---------------------------------------------------------------------------------
@@ -100,7 +113,6 @@ public class SearchPage extends BasePage {
                                        String ExpectedValueRealName,
                                        String ExpectedValueCurrentLocation) {
 
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             WebElement actualValueName = searchWaitUntil(actualValueNameLocator);
             WebElement ActualValueRealName = searchWaitUntil(ActualValueRealNameLocator);
             WebElement ActualValueCurrentLocation = searchWaitUntil(ActualValueCurrentLocationLocator);
@@ -134,8 +146,7 @@ public class SearchPage extends BasePage {
 
     //Search webelements by cssLocator, returns an object
     public WebElement searchWaitUntil(String locator) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator)));
+        WebElement webElement = auto_getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator)));
         return webElement;
     }
 

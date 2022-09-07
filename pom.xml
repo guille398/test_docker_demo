@@ -13,7 +13,74 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.test.failure.ignore>true</maven.test.failure.ignore>
+        <runner>testing.xml</runner>
     </properties>
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <target>local</target>
+            </properties>
+        </profile>
+        <profile>
+            <id>grid</id>
+            <properties>
+                <target>grid</target>
+                <runner>testingGrid.xml</runner>
+            </properties>
+        </profile>
+
+        <!--** PROFILE FOR NO-HEADLESS BROWSER MODE ** -->
+
+        <profile>
+            <id>no-headless</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <browser.mode>no-headless</browser.mode>
+            </properties>
+        </profile>
+
+        <!--** PROFILE FOR HEADLESS BROWSER MODE ** -->
+
+        <profile>
+            <id>headless</id>
+            <properties>
+                <browser.mode>headless</browser.mode>
+            </properties>
+        </profile>
+
+        <!--** PROFILES TO ACTIVATE A PARTICULAR BROWSER ** -->
+
+        <!--** BROWSER GOOGLE CHROME ** -->
+        <profile>
+            <id>chrome</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <browser.name>chrome</browser.name>
+            </properties>
+        </profile>
+        <!--** BROWSER SAFARI ** -->
+        <profile>
+            <id>safari</id>
+            <properties>
+                <browser.name>safari</browser.name>
+            </properties>
+        </profile>
+        <!--** BROWSER MOZILLA FIREFOX ** -->
+        <profile>
+            <id>mozilla</id>
+            <properties>
+                <browser.name>mozilla</browser.name>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -130,6 +197,11 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.2.1</version>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>6.11.0</version>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement>
@@ -141,5 +213,11 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <resources>
+            <resource>
+                <directory>src/test/resources/config</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 </project>
