@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>test-project-java-cucumber</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -64,13 +64,6 @@
             </activation>
             <properties>
                 <browser.name>chrome</browser.name>
-            </properties>
-        </profile>
-        <!--** BROWSER SAFARI ** -->
-        <profile>
-            <id>safari</id>
-            <properties>
-                <browser.name>safari</browser.name>
             </properties>
         </profile>
         <!--** BROWSER MOZILLA FIREFOX ** -->
