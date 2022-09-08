@@ -28,6 +28,6 @@ services:
   automation_sample:
     image: "guillermoendava/automationrepository:automationdockerendava"
     build: .
-    command: bash -c "mvn test -Dhub='http://selenium-hub:4444/wd/hub' -Dbrowser=chrome"
+    command: bash -c "mvn test -Pgrid -Pheadless -Pchrome -P='http://selenium-hub:4444/wd/hub'
     depends_on:
       - chrome
