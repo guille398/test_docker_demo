@@ -1,33 +1,27 @@
 version: "3"
 services:
   chrome:
-    image: selenium/node-chrome:3.14.0-gallium
-    volumes:
-      - /dev/shm:/dev/shm
+    image: selenium/node-chrome:4.0.0-rc-2-prerelease-20210908
+    shm_size: 2gb
     depends_on:
       - hub
     environment:
-      HUB_HOST: hub
-
-
-  firefox:
-    image: selenium/node-firefox:3.14.0-gallium
-    volumes:
-       - /dev/shm:/dev/shm
-    depends_on:
-       - hub
-    environment:
-        HUB_HOST: hub
-
-  hub:
-    image: selenium/hub:3.14.0-gallium
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
     ports:
-      - "4444:4444"
-
+      - "6900:5900"
+  hub:
+    image: selenium/hub:4.0.0-rc-2-prerelease-20210908
+    container_name: hub
+    ports:
+     - "4442:4442"
+     - "4443:4443"
+     - "4444:4444"
 
   automation_sample:
-    image: "guillermoendava/automationrepository:automationdockerendava"
-    build: .
-    command: bash -c "mvn test -Pgrid -Pheadless -Pchrome
-    depends_on:
-      - chrome
+   image: "guillermoendava/automationrepository:automationdockerendava"
+   build: .
+   command: bash -c "mvn test -Pgrid -Pheadless -Pchrome -Dgrid.url='http://localhost:4444/wd/hub'"
+   depends_on:
+     - chrome

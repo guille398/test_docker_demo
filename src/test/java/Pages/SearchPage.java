@@ -20,7 +20,7 @@ public class SearchPage extends MasterPage {
     static String submitItemButtonLocator = "div.popup.form-popup div.popup-content section:nth-child(2) form:nth-child(1) div.buttons-wrapper.center:nth-child(6) > button.button.green";
     static String FirstCardLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content div.infinite-scroll-component__outerdiv div.infinite-scroll-component.cards-wrapper > div.card:nth-child(1)";
 
-    static String DeleteButtonLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content div.infinite-scroll-component__outerdiv div.infinite-scroll-component.cards-wrapper div.card div.actions-wrapper:nth-child(7) > button.button:nth-child(4)";
+    static String DeleteButtonLocator = "button[title='Delete']";
 
     static String thumbnailTextBoxLocator = "div.popup.form-popup div.popup-content section:nth-child(2) form:nth-child(1) div.form-row.row:nth-child(1) > input:nth-child(2)";
     static String nameTextBoxLocator = "div.popup.form-popup div.popup-content section:nth-child(2) form:nth-child(1) div.form-row.row:nth-child(2) > input:nth-child(2)";
@@ -101,7 +101,16 @@ public class SearchPage extends MasterPage {
     }
 
     public void alertAccept(){
+        closeAlert();
+    }
 
+    public boolean haveItems(){
+        WebElement el = searchWaitUntil("p.center.pagination-state");
+        sleep(5000);
+        if(el.getText().toLowerCase().contains("showing")) {
+            return true;
+        }
+        return false;
     }
 
     //Asserts ---------------------------------------------------------------------------------

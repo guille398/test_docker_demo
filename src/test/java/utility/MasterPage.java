@@ -50,7 +50,9 @@ public abstract class MasterPage {
 
         return (Wait)fluentWait.get();
     }
-
+    public void closeAlert(){
+        getDriver().switchTo().alert().accept();
+    }
     public void auto_getWaitInMiliseconds(long miliSeconds){
         sleep(miliSeconds);
     }
