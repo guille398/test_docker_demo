@@ -28,6 +28,7 @@
             <id>grid</id>
             <properties>
                 <target>grid</target>
+                <grid.url>http://selenium-hub:4444/wd/hub</grid.url>
                 <runner>testngGrid.xml</runner>
             </properties>
         </profile>
