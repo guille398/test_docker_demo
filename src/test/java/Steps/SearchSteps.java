@@ -23,14 +23,6 @@ public class SearchSteps {
         if (buttonId.equals("Delete button")) {
             google.alertAccept();
         }
-        if (buttonId.equals("Delete button")) {
-            while (google.haveItems() && buttonId.equals("Delete button")) {
-                google.ClickButton(buttonId);
-                if (buttonId.equals("Delete button")) {
-                    google.alertAccept();
-                }
-            }
-        }
     }
 
 

@@ -109,13 +109,9 @@ public class SearchPage extends MasterPage {
         closeAlert();
     }
 
-    public boolean haveItems(){
-        WebElement el = searchWaitUntil("p.center.pagination-state");
-        sleep(5000);
-        if(el.getText().toLowerCase().contains("showing")) {
-            return true;
-        }
-        return false;
+    public int haveItems(){
+        return  getDriver().findElements(By.cssSelector("div.card")).size();
+
     }
 
     //Asserts ---------------------------------------------------------------------------------
