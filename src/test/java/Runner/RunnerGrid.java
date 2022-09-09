@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
            features = {"src/test/resources/"},
-           glue = "Steps",
+           glue = {"Steps","hooks"},
            plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
            tags = "@SmokeTest"
     )

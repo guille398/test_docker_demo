@@ -29,11 +29,13 @@ public class SearchPage extends MasterPage {
     static String aliveTextBoxLocator = "div.popup.form-popup div.popup-content section:nth-child(2) form:nth-child(1) div.form-row.row:nth-child(5) > input:nth-child(2)";
 
     static String actualValueMsgLocator = "div:nth-child(2) div.restool-app div.app-page:nth-child(2) main.app-page-content > div.app-error";
-
+    
+    static String addMsgLocator = "";
 
 
     public void navigateTo(String url){
         auto_openURLInBrowser(url);
+        auto_maximizeWindow();
     }
 
     //Inputs a value in the received object
@@ -76,6 +78,9 @@ public class SearchPage extends MasterPage {
 
         }
         clickButton(button);
+        if (buttonId =="Submit Item") {
+        	sleep(5000);
+        }
     }
 
     public void addItemsValues(  String THUMBNAIL,
@@ -158,5 +163,6 @@ public class SearchPage extends MasterPage {
         WebElement webElement = auto_getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator)));
         return webElement;
     }
+    
 
 }

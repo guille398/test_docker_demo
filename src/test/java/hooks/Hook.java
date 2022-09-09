@@ -8,6 +8,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterTest;
+
 import utility.MasterPage;
 import utility.PropertyFileReader;
 
@@ -52,4 +54,16 @@ public class Hook {
         /*LoggerFactory.getLogger(this.getClass()).info("------ Se agrega espera de 5 seg para prueba -----");
         sleep(5000);*/
     }
+    
+    @AfterTest
+    public void afterTestRun(Scenario scenario) throws IllegalAccessException, NoSuchFieldException, MalformedURLException, InterruptedException {
+        LoggerFactory.getLogger(this.getClass()).info("------ Ending -----" + scenario.getName() + "-----");
+        if(scenario.isFailed() && DriverManager.isDriverCreated()){
+            byte[] screenshot = ((TakesScreenshot)DriverManager.getInstance()).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", "screenshot");
+        }
+        DriverManager.quitDriver();
+        MasterPage.removeWaits();
+    }
+    
 }
