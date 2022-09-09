@@ -61,7 +61,7 @@ services:
       - "4444:4444"
       
   automation_sample:
-    image: "guillermoendava/automationrepository:automationdockerendava2.0"
+    image: "guillermoendava/automationrepository:automationdockerendava3.0"
     build: .
     volumes:
       - /tmp/reportes:/test-output
