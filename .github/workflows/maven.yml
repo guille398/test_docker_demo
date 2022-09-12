@@ -28,8 +28,9 @@ jobs:
       run: mvn test -Pgrid -Pchrome -Dgrid.url=http://localhost:4444
     - name: Automation Test Reports
       uses: actions/upload-artifact@v2
+      if: ${{ always() }}
       with:
         name: Test Reports
-        path: 
-          ./reports            
-
+        path: |
+          ./test-output/            
+      
