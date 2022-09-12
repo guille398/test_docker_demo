@@ -24,4 +24,6 @@ jobs:
         cache: maven
     - name: start Selenium docker grid setup
       run: docker-compose -f "docker-compose.yml" up -d --build
+    - name: run tests
+      run: mvn test -Pgrid -Pchrome -Dgrid.url=http://localhost:4444
 
