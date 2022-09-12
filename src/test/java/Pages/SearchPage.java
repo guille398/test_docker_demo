@@ -28,9 +28,9 @@ public class SearchPage extends MasterPage {
     static String locationTextBoxLocator = "div.popup.form-popup div.popup-content section:nth-child(2) form:nth-child(1) div.form-row.row:nth-child(4) > select:nth-child(2)";
     static String aliveTextBoxLocator = "div.popup.form-popup div.popup-content section:nth-child(2) form:nth-child(1) div.form-row.row:nth-child(5) > input:nth-child(2)";
 
-    static String actualValueMsgLocator = "div:nth-child(2) div.restool-app div.app-page:nth-child(2) main.app-page-content > div.app-error";
+    static String actualValueMsgLocator = "div.app-error";
     
-    static String addMsgLocator = "";
+    static String addMsgLocator = "p.";
 
 
     public void navigateTo(String url){
@@ -109,11 +109,6 @@ public class SearchPage extends MasterPage {
         closeAlert();
     }
 
-    public int haveItems(){
-        return  getDriver().findElements(By.cssSelector("div.card")).size();
-
-    }
-
     //Asserts ---------------------------------------------------------------------------------
     static String actualValueNameLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content div.infinite-scroll-component__outerdiv div.infinite-scroll-component.cards-wrapper div.card:nth-child(1) div.card-row.text:nth-child(3) > span:nth-child(2)";
     static String ActualValueRealNameLocator = "div.restool-app div.app-page:nth-child(2) main.app-page-content div.infinite-scroll-component__outerdiv div.infinite-scroll-component.cards-wrapper div.card:nth-child(1) div.card-row.text:nth-child(4) > span:nth-child(2)";
@@ -154,11 +149,29 @@ public class SearchPage extends MasterPage {
         }
     }
 
+    public void checkMsgUntilappear(String ExpectedMsg){
+        while ((isElementPresent(By.cssSelector(actualValueMsgLocator))) == true) {
+            searchWaitUntil(DeleteButtonLocator).click();
+            sleep(3000);
+            this.alertAccept();
+        }
+    }
+
     //Search webelements by cssLocator, returns an object
     public WebElement searchWaitUntil(String locator) {
         WebElement webElement = auto_getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator)));
         return webElement;
     }
-    
+
+    public boolean isElementPresent(By locatorKey) {
+        try {
+            getDriver().findElement(locatorKey);
+            System.out.println("EL locator se ve");
+            return true;
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            System.out.println("EL locator no se ve");
+            return false;
+        }
+    }
 
 }

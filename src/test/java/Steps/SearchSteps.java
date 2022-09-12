@@ -53,6 +53,7 @@ public class SearchSteps {
     public void CheckDelete(String value){
       enterValue(value);
       clickButton("Search Submit");
+      google.checkMsgUntilappear("Nothing to see here. Result is empty");
       google.checkMsg("Nothing to see here. Result is empty");
     }
 }
