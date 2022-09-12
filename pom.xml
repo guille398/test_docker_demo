@@ -29,7 +29,7 @@
             <properties>
                 <target>grid</target>
                 <grid.url>http://localhost:4444</grid.url>
-                <runner>testngGrid.xml</runner>
+                <runner>testng.xml</runner>
             </properties>
         </profile>
 
