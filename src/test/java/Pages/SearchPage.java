@@ -150,9 +150,9 @@ public class SearchPage extends MasterPage {
     }
 
     public void checkMsgUntilappear(String ExpectedMsg){
-        while ((isElementPresent(By.cssSelector(actualValueMsgLocator))) == true) {
+        sleep(3000);
+        while (isElementPresent(By.cssSelector(DeleteButtonLocator))) {
             searchWaitUntil(DeleteButtonLocator).click();
-            sleep(3000);
             this.alertAccept();
         }
     }
@@ -165,11 +165,9 @@ public class SearchPage extends MasterPage {
 
     public boolean isElementPresent(By locatorKey) {
         try {
-            getDriver().findElement(locatorKey);
-            System.out.println("EL locator se ve");
+            getDriver().findElement(locatorKey).isDisplayed();
             return true;
         } catch (org.openqa.selenium.NoSuchElementException e) {
-            System.out.println("EL locator no se ve");
             return false;
         }
     }
