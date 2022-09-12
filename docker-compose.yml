@@ -35,7 +35,7 @@ services:
   chrome_video:
     image: selenium/video:ffmpeg-4.3.1-20220831
     volumes:
-      - /tmp/videos:/videos
+      - videos:/videos
     depends_on:
       - chrome
     environment:
@@ -45,7 +45,7 @@ services:
   firefox_video:
     image: selenium/video:ffmpeg-4.3.1-20220831
     volumes:
-      - /tmp/videos:/videos
+      - videos:/videos
     depends_on:
       - firefox
     environment:
@@ -64,8 +64,12 @@ services:
     image: "guillermoendava/automationrepository:automationdockerendava3.0"
     build: .
     volumes:
-      - /tmp/reportes:/test-output
+      - reports:/test-output
     command: bash -c "mvn test -Pgrid -Pchrome -Dgrid.url=http://localhost:4444" 
     depends_on:
       - chrome
       - firefox
+   
+volumes:
+  reports:
+  videos:
