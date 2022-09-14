@@ -27,7 +27,7 @@ public abstract class MasterPage {
     private static ThreadLocal<FluentWait<EventFiringWebDriver>> fluentWait = new ThreadLocal();
     private static final Logger LOGGER = LoggerFactory.getLogger(MasterPage.class);
 
-    private static long STANDARD_TIMEOUT= Long.valueOf(PropertyFileReader.getProperty("standard.wait.timeout"));
+    private static Long STANDARD_TIMEOUT= Long.valueOf(PropertyFileReader.getProperty("standard.wait.timeout"));
     private static long EXPLICIT_TIMEOUT= Long.valueOf(PropertyFileReader.getProperty("explicit.wait.timeout"));
     private static long WAIT_FRECUENCY= Long.valueOf(PropertyFileReader.getProperty("wait.frequency.ms"));
 
@@ -38,7 +38,7 @@ public abstract class MasterPage {
      */
     public WebDriverWait auto_getWait() {
         if (wait.get() == null) {
-            wait.set(new WebDriverWait(getDriver(), STANDARD_TIMEOUT));
+            wait.set(new WebDriverWait(getDriver(),Duration.ofSeconds(5)));
         }
         return (WebDriverWait)wait.get();
     }

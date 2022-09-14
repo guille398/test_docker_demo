@@ -1,6 +1,7 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -11,6 +12,7 @@ import utility.MasterPage;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class SearchPage extends MasterPage {
 
@@ -165,11 +167,10 @@ public class SearchPage extends MasterPage {
 
     public boolean isElementPresent(By locatorKey) {
         try {
-            getDriver().findElement(locatorKey).isDisplayed();
+            getDriver().findElement(locatorKey);
             return true;
-        } catch (org.openqa.selenium.NoSuchElementException e) {
+        } catch (NoSuchElementException | org.openqa.selenium.TimeoutException e) {
             return false;
         }
     }
-
 }
