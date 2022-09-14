@@ -17,9 +17,9 @@ Feature: Selenium Test
 
   Scenario: Search an existing Character at the list
   	Given a Chrome browser navigates to Search page https://dsternlicht.github.io/RESTool/#/characters?search=
-    When I type on search box the value Arya
+    When I type on search box the value Robert B
     And I click on Search Submit
-    Then the app shows a card which includes the name Arya, the real name Maisie, and current location Winterfell
+    Then the app shows a card which includes the name Robert B, the real name Chespirito, and current location Kings Landing
 
 
   Scenario: Delete an existing Character at the list
