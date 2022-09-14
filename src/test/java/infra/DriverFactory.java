@@ -65,9 +65,9 @@ public class DriverFactory {
     public static RemoteWebDriver initDriverGrid () {
         String browser = browser_config;
         String browserMode = browsermode_config;
-        String gridURL = PropertyFileReader.getProperty("grid.url");
+        String gridURL = PropertyFileReader.getProperty("gridUrl");
         LOGGER.info("browser value is: " + browser + " open in grid " +gridURL);
-        switch (browser.toLowerCase()) {
+                switch (browser.toLowerCase()) {
             case "mozilla":
                 try {
                     driver.set(RemoteFirefoxDriverManager.createDriver(gridURL, browserMode));
