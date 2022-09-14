@@ -29,7 +29,7 @@
             <properties>
                 <target>grid</target>
                 <grid.url>http://localhost:4444</grid.url>
-                <runner>testng.xml</runner>
+                <runner>testngGrid.xml</runner>
             </properties>
         </profile>
 
@@ -115,24 +115,24 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>6.11.0</version>
+            <version>7.4.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
-            <version>6.11.0</version>
+            <version>7.4.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-core</artifactId>
-            <version>6.11.0</version>
+            <version>7.4.1</version>
         </dependency>
         <dependency>
             <groupId>com.vimalselvam</groupId>
             <artifactId>cucumber-extentsreport</artifactId>
-            <version>2.0.5</version>
+            <version>3.1.1</version>
         </dependency>
         <dependency>
             <groupId>tech.grasshopper</groupId>
