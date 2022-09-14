@@ -61,8 +61,7 @@ services:
       - "4444:4444"
       
   automation_sample:
-    image: "guillermoendava/automationrepository:automationdockerendavatest3.0"
-    build: .
+    image: "guillermoendava/automationrepository:automationdockerendavatest3.0"  
     volumes:
       - reports:/test-output
     command: bash -c "mvn test -Pgrid -Pchrome -Dgrid.url=http://localhost:4444" 
