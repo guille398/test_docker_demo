@@ -64,7 +64,7 @@ services:
     image: "guillermoendava/automationrepository:automationdockerendavatest3.0"  
     volumes:
       - reports:/test-output
-    command: bash -c "mvn test -Pgrid -Pchrome -Dgrid.url=http://localhost:4444" 
+    command: bash -c "mvn test -Pgrid -Pchrome -DgridUrl=http://localhost:4444" 
     depends_on:
       - chrome
       - firefox
